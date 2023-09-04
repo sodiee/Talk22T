@@ -19,12 +19,18 @@ public class TCPClient {
 
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        //første besked
-        sentence = inFromUser.readLine();
-        outToServer.writeBytes(sentence + '\n');
+        while (true) {
+            // Læs besked fra brugeren
+            System.out.print("Skriv en besked til serveren: ");
+            sentence = inFromUser.readLine();
 
+            // Send besked til serveren
+            outToServer.writeBytes(sentence + '\n');
+
+            // Modtag og udskriv svar fra serveren
             modifiedSentence = inFromServer.readLine();
-            System.out.println("FROM OTHER CLIENT (SERVER): " + modifiedSentence);
+            System.out.println("FROM SERVER: " + modifiedSentence);
+        }
         //clientSocket.close();
 
     }
