@@ -7,10 +7,15 @@ public class ThreadLæse extends Thread {
     String sentenceFromOtherClient;
 
     Socket socket;
-    BufferedReader inFromServer = new BufferedReader(new InputStreamReader(System.in));
+    BufferedReader inFromServer;
 
     public ThreadLæse(Socket clientSocket) {
         this.socket = clientSocket;
+        try {
+            this.inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void run() {

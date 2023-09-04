@@ -16,15 +16,13 @@ public class TCPClient {
         Socket clientSocket = new Socket("localhost", 6789);
         SkriveTraad skriveTraad = new SkriveTraad(clientSocket);
         ThreadLæse threadLæse = new ThreadLæse(clientSocket);
-        DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+        //DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 
-        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        //BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
 
-        while (true){
             skriveTraad.start();
             threadLæse.start();
-        }
         /**
         while (true) {
 			// Modtag og udskriv svar fra serveren

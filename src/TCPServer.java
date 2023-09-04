@@ -21,8 +21,8 @@ public class TCPServer {
         SkriveTraad skriveTraad = new SkriveTraad(connectionSocket);
         ThreadLæse threadLæse = new ThreadLæse(connectionSocket);
 
-        BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-        DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
+        //BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+       // DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("En anden klient forsøger at sende en besked. Vil du chatte med dem? (ja/nej)");
@@ -32,10 +32,10 @@ public class TCPServer {
             System.out.println("Okay, du vil ikke chatte lige nu. Lukker forbindelsen.");
             connectionSocket.close();
         } else if (response.equalsIgnoreCase("ja")) {
-            while (true){
+
                 threadLæse.start();
                 skriveTraad.start();
-            }
+
             /**
              while (true) {
 

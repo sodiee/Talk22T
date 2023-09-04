@@ -19,18 +19,21 @@ public class SkriveTraad extends Thread{
     @Override
     public void run() {
         System.out.print("Skriv en besked til serveren: ");
+        while (true) {
 
-        try {
-            sentence = inFromUser.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
-        // Send besked til serveren
-        try {
-            outToServer.writeBytes(sentence + '\n');
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+            try {
+                sentence = inFromUser.readLine();
+                outToServer.writeBytes(sentence + '\n');
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Send besked til serveren
+
+
+
         }
     }
 }
