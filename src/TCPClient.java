@@ -10,7 +10,7 @@ public class TCPClient {
     public static void main(String[] args) throws Exception, IOException {
 
         String sentence;
-        String modifiedSentence;
+        String sentenceFromOtherClient;
 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 
@@ -21,8 +21,8 @@ public class TCPClient {
 
         while (true) {
 			// Modtag og udskriv svar fra serveren
-			modifiedSentence = inFromServer.readLine();
-			System.out.println("FROM SERVER: " + modifiedSentence);
+			sentenceFromOtherClient = inFromServer.readLine();
+			System.out.println("FROM SERVER: " + sentenceFromOtherClient);
 
             // Læs besked fra brugeren
             System.out.print("Skriv en besked til serveren: ");
