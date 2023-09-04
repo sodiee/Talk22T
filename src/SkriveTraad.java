@@ -7,11 +7,12 @@ import java.net.Socket;
 public class SkriveTraad extends Thread{
     String sentence;
     BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
-    Socket clientSocket = new Socket("10.10.139.114", 6789);
+    Socket clientSocket;
 
     DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 
-    public SkriveTraad() throws IOException {
+    public SkriveTraad(Socket clientSocket) throws IOException {
+        clientSocket = this.clientSocket;
     }
 
     @Override

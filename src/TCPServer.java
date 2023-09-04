@@ -8,13 +8,13 @@ import java.util.Scanner;
 public class TCPServer {
 
     public static void main(String[] args) throws Exception {
-        SkriveTraad skriveTraad = new SkriveTraad();
-        ThreadLæse threadLæse = new ThreadLæse();
-
         String clientSentence;
         String serverInput;
 
         ServerSocket welcomeSocket = new ServerSocket(6789);
+
+        SkriveTraad skriveTraad = new SkriveTraad();
+        ThreadLæse threadLæse = new ThreadLæse();
 
         System.out.println("Venter på klientforbindelse...");
         Socket connectionSocket = welcomeSocket.accept();

@@ -8,15 +8,14 @@ import java.net.Socket;
 public class TCPClient {
 
     public static void main(String[] args) throws Exception, IOException {
-        SkriveTraad skriveTraad = new SkriveTraad();
-        ThreadLæse threadLæse = new ThreadLæse();
-
         String sentence;
         String sentenceFromOtherClient;
 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 
-        Socket clientSocket = new Socket("10.10.139.114", 6789);
+        Socket clientSocket = new Socket("localhost", 6789);
+        SkriveTraad skriveTraad = new SkriveTraad(clientSocket);
+        ThreadLæse threadLæse = new ThreadLæse();
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
