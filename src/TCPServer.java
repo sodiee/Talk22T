@@ -13,12 +13,13 @@ public class TCPServer {
 
         ServerSocket welcomeSocket = new ServerSocket(6789);
 
-        SkriveTraad skriveTraad = new SkriveTraad();
-        ThreadLæse threadLæse = new ThreadLæse();
+
 
         System.out.println("Venter på klientforbindelse...");
         Socket connectionSocket = welcomeSocket.accept();
         System.out.println("Klient forbundet.");
+        SkriveTraad skriveTraad = new SkriveTraad(connectionSocket);
+        ThreadLæse threadLæse = new ThreadLæse(connectionSocket);
 
         BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
         DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());

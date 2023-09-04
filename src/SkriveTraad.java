@@ -9,10 +9,11 @@ public class SkriveTraad extends Thread{
     BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
     Socket clientSocket;
 
-    DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+    DataOutputStream outToServer;
 
     public SkriveTraad(Socket clientSocket) throws IOException {
-        clientSocket = this.clientSocket;
+        this.clientSocket = clientSocket;
+        this.outToServer = new DataOutputStream(clientSocket.getOutputStream());
     }
 
     @Override
