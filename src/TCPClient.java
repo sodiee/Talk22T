@@ -9,6 +9,7 @@ public class TCPClient {
 
     public static void main(String[] args) throws Exception, IOException {
 
+        SkriveTraad skriveTraad = new SkriveTraad();
         String sentence;
         String modifiedSentence;
 
@@ -19,22 +20,25 @@ public class TCPClient {
 
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
+        while (true){
+            skriveTraad.start();
+        }
+        /**
         while (true) {
-			// Modtag og udskriv svar fra serveren
-			modifiedSentence = inFromServer.readLine();
-			System.out.println("FROM SERVER: " + modifiedSentence);
+            // Modtag og udskriv svar fra serveren
+            modifiedSentence = inFromServer.readLine();
+            System.out.println("FROM SERVER: " + modifiedSentence);
 
             // Læs besked fra brugeren
             System.out.print("Skriv en besked til serveren: ");
+
             sentence = inFromUser.readLine();
 
             // Send besked til serveren
             outToServer.writeBytes(sentence + '\n');
-
-
         }
-        //clientSocket.close();
-
+         **/
     }
-
+    //clientSocket.close();
 }
+
