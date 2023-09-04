@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class TCPServer {
 
     public static void main(String[] args) throws Exception {
+        SkriveTraad skriveTraad = new SkriveTraad();
+        ThreadLæse threadLæse = new ThreadLæse();
 
         String clientSentence;
         String serverInput;
@@ -29,21 +31,29 @@ public class TCPServer {
             System.out.println("Okay, du vil ikke chatte lige nu. Lukker forbindelsen.");
             connectionSocket.close();
         } else if (response.equalsIgnoreCase("ja")) {
-        while (true) {
+            while (true){
+                threadLæse.start();
+                skriveTraad.start();
+            }
+            /**
+             while (true) {
 
-                System.out.print("Skriv en besked til klienten: ");
-                serverInput = scanner.nextLine();
-                outToClient.writeBytes(serverInput + '\n');
+             System.out.print("Skriv en besked til klienten: ");
+             serverInput = scanner.nextLine();
+             outToClient.writeBytes(serverInput + '\n');
 
-                clientSentence = inFromClient.readLine();
-                System.out.println("FROM OTHER CLIENT: " + clientSentence);
+             clientSentence = inFromClient.readLine();
+             System.out.println("FROM OTHER CLIENT: " + clientSentence);
 
+             }
+             } else {
+             System.out.println("Svar med 'ja' eller 'nej'.");
+             }
+
+
+            welcomeSocket.close();
+             **/
         }
-        } else {
-            System.out.println("Svar med 'ja' eller 'nej'.");
-        }
 
-        welcomeSocket.close();
     }
-
 }

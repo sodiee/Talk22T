@@ -8,6 +8,8 @@ import java.net.Socket;
 public class TCPClient {
 
     public static void main(String[] args) throws Exception, IOException {
+        SkriveTraad skriveTraad = new SkriveTraad();
+        ThreadLæse threadLæse = new ThreadLæse();
 
         String sentence;
         String sentenceFromOtherClient;
@@ -18,10 +20,11 @@ public class TCPClient {
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        ThreadLæse threadLæse = new ThreadLæse();
+
 
         while (true){
             skriveTraad.start();
+            threadLæse.start();
         }
         /**
         while (true) {
@@ -37,11 +40,9 @@ public class TCPClient {
 
             // Send besked til serveren
             outToServer.writeBytes(sentence + '\n');
-//hej
+         **/
 
         }
         //clientSocket.close();
 
     }
-
-}
