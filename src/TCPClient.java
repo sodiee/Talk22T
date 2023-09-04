@@ -30,7 +30,7 @@ public class TCPClient {
 
             // Send besked til serveren
             outToServer.writeBytes(sentence + '\n');
-
+//hej
 
         }
         //clientSocket.close();
