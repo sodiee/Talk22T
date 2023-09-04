@@ -11,7 +11,7 @@ public class TCPClient {
 
         SkriveTraad skriveTraad = new SkriveTraad();
         String sentence;
-        String modifiedSentence;
+        String sentenceFromOtherClient;
 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 
@@ -36,9 +36,12 @@ public class TCPClient {
 
             // Send besked til serveren
             outToServer.writeBytes(sentence + '\n');
+//hej
+
         }
          **/
     }
     //clientSocket.close();
 }
 
+}
