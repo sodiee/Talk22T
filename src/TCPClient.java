@@ -23,10 +23,8 @@ public class TCPClient {
         sentence = inFromUser.readLine();
         outToServer.writeBytes(sentence + '\n');
 
-        while (true) {
             modifiedSentence = inFromServer.readLine();
             System.out.println("FROM OTHER CLIENT (SERVER): " + modifiedSentence);
-        }
         //clientSocket.close();
 
     }
