@@ -22,7 +22,13 @@ public class ThreadLæse extends Thread {
         while (true) {
             try {
                 sentenceFromOtherClient = inFromServer.readLine();
-                System.out.println("\nFrom other client: " + sentenceFromOtherClient);
+                try {
+                    if (inFromServer.readLine() != null) {
+                        System.out.println("\nFrom other client: " + sentenceFromOtherClient);
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
