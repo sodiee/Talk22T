@@ -12,13 +12,14 @@ public class TCPClient {
         String sentence;
         String sentenceFromOtherClient;
         String ip;
-        Navneservice navneservice = new Navneservice();
 
-        navneservice.printMap();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hvem vil du chatte med?");
-        ip = navneservice.getIp(sc.nextLine());
+        //IP del
+        Socket clientSocketIp = new Socket("10.10.139.117", 6790);
+        BufferedReader inFromUserIp = new BufferedReader(new InputStreamReader(System.in));
+        ip = inFromUserIp.readLine();
 
+
+        //Chat del
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 
         Socket clientSocket = new Socket(ip, 6789);

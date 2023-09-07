@@ -13,8 +13,6 @@ public class TCPServer {
 
         ServerSocket welcomeSocket = new ServerSocket(6789);
 
-
-
         System.out.println("Venter på klientforbindelse...");
         Socket connectionSocket = welcomeSocket.accept();
         System.out.println("Klient forbundet.");
