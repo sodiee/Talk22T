@@ -23,7 +23,7 @@ public class Navneservice {
     }
 
     public void printMap() {
-        System.out.println("Channels availabe: ");
+        System.out.println("Channels available: ");
         System.out.println(map.entrySet());
     }
 
