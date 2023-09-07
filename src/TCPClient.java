@@ -16,6 +16,9 @@ public class TCPClient {
         //IP del
         Socket clientSocketIp = new Socket("10.10.139.117", 6790);
         BufferedReader inFromUserIp = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Skriv navnet på den du ønsker at chatte med: ");
+        DataOutputStream dataOutputStreamIp = new DataOutputStream(clientSocketIp.getOutputStream());
+
         ip = inFromUserIp.readLine();
 
 

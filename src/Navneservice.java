@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -38,9 +39,9 @@ public class Navneservice {
 
         ServerSocket welcomeSocket = new ServerSocket(6790);
         Socket connectionSocket = welcomeSocket.accept();
-        sc = new Scanner(System.in);
-        System.out.println("Skriv navnet på den du ønsker at chatte med: ");
-        ip = navneservice.getIp(sc.nextLine());
+        BufferedReader bufferedReaderNavn = new BufferedReader(new InputStreamReader(System.in));
+
+        ip = navneservice.getIp(bufferedReaderNavn.readLine());
         DataOutputStream dataOutputStream = new DataOutputStream(connectionSocket.getOutputStream());
         dataOutputStream.writeBytes(ip);
     }
