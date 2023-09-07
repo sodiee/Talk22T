@@ -54,6 +54,7 @@ public class Navneservice {
         byte[] byteArr = new byte[1024];
         DatagramPacket serverDatagramPacket = new DatagramPacket(byteArr, byteArr.length);
         serverDatagramSocket.receive(serverDatagramPacket);
+        System.out.println("modtaget");
 
         navn = new String(serverDatagramPacket.getData(), 0, serverDatagramPacket.getLength()).trim();
 
@@ -67,5 +68,6 @@ public class Navneservice {
         byte[] sendData = ip.getBytes();
         DatagramPacket sendPakke = new DatagramPacket(sendData, sendData.length, clientAdress, clientPort);
         serverDatagramSocket.send(sendPakke);
+        System.out.println("sendt tilbage");
     }
 }

@@ -41,9 +41,12 @@ public class TCPClient {
 
         DatagramPacket clientDatagramPacket = new DatagramPacket(byteArr, byteArr.length, inetAddress, 6790);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Skriv navn på den du ønsker at chatte med: ");
         navn = bufferedReader.readLine();
         byteArr = navn.getBytes();
+        clientDatagramPacket.setData(byteArr);
         clientDatagramSocket.send(clientDatagramPacket);
+        System.out.println("Sendt");
 
         byte[] ipByteArr = new byte[1024];
         DatagramPacket receivedIpPacket = new DatagramPacket(ipByteArr, ipByteArr.length);
