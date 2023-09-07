@@ -49,9 +49,8 @@ public class TCPServer {
              System.out.println("Svar med 'ja' eller 'nej'.");
              }
 
-
+*/
             welcomeSocket.close();
-             **/
         }
 
     }
