@@ -18,8 +18,8 @@ public class TCPClient {
         BufferedReader inFromUserIp = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Skriv navnet på den du ønsker at chatte med: ");
         DataOutputStream dataOutputStreamIp = new DataOutputStream(clientSocketIp.getOutputStream());
-
-        System.out.println(inFromUserIp.readLine());
+        dataOutputStreamIp.writeBytes(inFromUserIp.readLine());
+        System.out.println(inFromUserIp);
         ip = inFromUserIp.readLine();
 
 
