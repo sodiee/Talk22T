@@ -12,16 +12,24 @@ public class TCPClient {
         String sentence;
         String sentenceFromOtherClient;
         String ip;
+        String navn;
 
         //IP del
         Socket clientSocketIp = new Socket("10.10.139.117", 6790);
         BufferedReader inFromUserIp = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Skriv navnet på den du ønsker at chatte med: ");
-        DataOutputStream dataOutputStreamIp = new DataOutputStream(clientSocketIp.getOutputStream());
-        dataOutputStreamIp.writeBytes(inFromUserIp.readLine());
-        System.out.println(inFromUserIp);
-        ip = inFromUserIp.readLine();
 
+        System.out.println("Skriv navnet på den du ønsker at chatte med: ");
+        navn = inFromUserIp.readLine();
+
+        DataOutputStream dataOutputStreamIp = new DataOutputStream(clientSocketIp.getOutputStream());
+        dataOutputStreamIp.writeBytes(navn + '\n');
+
+        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocketIp.getInputStream()));
+        ip = inFromServer.readLine();
+
+        System.out.println("IP-adresse for " + navn + " er: " + ip);
+
+        clientSocketIp.close();
 
         //Chat del
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));

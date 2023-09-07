@@ -32,17 +32,18 @@ public class Navneservice {
     }
 
     public static void main(String[] args) throws IOException {
-        String navn;
         String ip;
         Navneservice navneservice = new Navneservice();
-        Scanner sc;
 
         ServerSocket welcomeSocket = new ServerSocket(6790);
         Socket connectionSocket = welcomeSocket.accept();
-        BufferedReader bufferedReaderNavn = new BufferedReader(new InputStreamReader(System.in));
 
-        ip = navneservice.getIp(bufferedReaderNavn.readLine());
+        BufferedReader bufferedReaderNavn = new BufferedReader(new InputStreamReader(System.in));
+        String navn = bufferedReaderNavn.readLine();
+
+        ip = navneservice.getIp(navn);
+
         DataOutputStream dataOutputStream = new DataOutputStream(connectionSocket.getOutputStream());
-        dataOutputStream.writeBytes(ip);
+        dataOutputStream.writeBytes(ip + '\n');
     }
 }
