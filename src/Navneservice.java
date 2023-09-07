@@ -34,25 +34,18 @@ public class Navneservice {
     public static void main(String[] args) throws IOException {
         String ip;
         Navneservice navneservice = new Navneservice();
-        System.out.println("navneservice");
 
         ServerSocket welcomeSocket = new ServerSocket(6790);
-        System.out.println("welcomesocket");
         Socket connectionSocket = welcomeSocket.accept();
-        System.out.println("welcome.accept");
 
 
         BufferedReader bufferedReaderNavn = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-        System.out.println("bufferedreadernavn");
         String navn = bufferedReaderNavn.readLine();
-        System.out.println("string navn done");
+
 
         ip = navneservice.getIp(navn);
-        System.out.println("ip done");
 
         DataOutputStream dataOutputStream = new DataOutputStream(connectionSocket.getOutputStream());
-        System.out.println("opret dataoutput");
         dataOutputStream.writeBytes(ip + '\n');
-        System.out.println("writebytes");
     }
 }

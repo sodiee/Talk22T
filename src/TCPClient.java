@@ -22,14 +22,10 @@ public class TCPClient {
         navn = inFromUserIp.readLine();
 
         DataOutputStream dataOutputStreamIp = new DataOutputStream(clientSocketIp.getOutputStream());
-        System.out.println("client dataoutput");
         dataOutputStreamIp.writeBytes(navn + '\n');
-        System.out.println("client writebytes");
 
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocketIp.getInputStream()));
-        System.out.println("client infromserver");
         ip = inFromServer.readLine();
-        System.out.println("client infromserver.readline");
 
         System.out.println("IP-adresse for " + navn + " er: " + ip);
 
