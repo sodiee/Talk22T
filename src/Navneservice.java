@@ -32,6 +32,7 @@ public class Navneservice {
 
     public static void main(String[] args) throws IOException {
         String ip;
+        String navn;
         Navneservice navneservice = new Navneservice();
 /*
         //TCP
@@ -49,6 +50,22 @@ public class Navneservice {
         dataOutputStream.writeBytes(ip + '\n');
         */
         //UDP
+        DatagramSocket serverDatagramSocket = new DatagramSocket(6790);
+        byte[] byteArr = new byte[1024];
+        DatagramPacket serverDatagramPacket = new DatagramPacket(byteArr, byteArr.length);
+        serverDatagramSocket.receive(serverDatagramPacket);
 
+        navn = new String(serverDatagramPacket.getData(), 0, serverDatagramPacket.getLength()).trim();
+
+        InetAddress clientAdress = serverDatagramPacket.getAddress();
+        int clientPort = serverDatagramPacket.getPort();
+
+        System.out.println("Fra klienten: " + navn);
+
+        ip = navneservice.getIp(navn);
+
+        byte[] sendData = ip.getBytes();
+        DatagramPacket sendPakke = new DatagramPacket(sendData, sendData.length, clientAdress, clientPort);
+        serverDatagramSocket.send(sendPakke);
     }
 }

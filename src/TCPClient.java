@@ -1,11 +1,9 @@
+import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.Socket;
+import java.net.*;
 import java.util.Scanner;
 
 
@@ -37,7 +35,24 @@ public class TCPClient {
         clientSocketIp.close();
 */
         //UDP
+        InetAddress inetAddress = InetAddress.getByName("10.10.139.117");
+        DatagramSocket clientDatagramSocket = new DatagramSocket(6790);
+        byte[] byteArr = new byte[1024];
 
+        DatagramPacket clientDatagramPacket = new DatagramPacket(byteArr, byteArr.length, inetAddress, 6790);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        navn = bufferedReader.readLine();
+        byteArr = navn.getBytes();
+        clientDatagramSocket.send(clientDatagramPacket);
+
+        byte[] ipByteArr = new byte[1024];
+        DatagramPacket receivedIpPacket = new DatagramPacket(ipByteArr, ipByteArr.length);
+        clientDatagramSocket.receive(receivedIpPacket);
+
+        ip = new String(receivedIpPacket.getData(), 0, receivedIpPacket.getLength()).trim();
+        System.out.println("Ip for: " + navn + "er: " + ip);
+
+        clientDatagramSocket.close();
         //Chat del
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 
