@@ -34,21 +34,22 @@ public class Navneservice {
         String ip;
         String navn;
         Navneservice navneservice = new Navneservice();
-/*
+
         //TCP
         ServerSocket welcomeSocket = new ServerSocket(6790);
         Socket connectionSocket = welcomeSocket.accept();
 
 
         BufferedReader bufferedReaderNavn = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-        String navn = bufferedReaderNavn.readLine();
+        navn = bufferedReaderNavn.readLine();
 
 
         ip = navneservice.getIp(navn);
 
         DataOutputStream dataOutputStream = new DataOutputStream(connectionSocket.getOutputStream());
         dataOutputStream.writeBytes(ip + '\n');
-        */
+
+        /*
         //UDP
         DatagramSocket serverDatagramSocket = new DatagramSocket(6790);
         byte[] byteArr = new byte[1024];
@@ -69,5 +70,6 @@ public class Navneservice {
         DatagramPacket sendPakke = new DatagramPacket(sendData, sendData.length, clientAdress, clientPort);
         serverDatagramSocket.send(sendPakke);
         System.out.println("sendt tilbage");
+        */
     }
 }

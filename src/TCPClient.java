@@ -15,7 +15,7 @@ public class TCPClient {
         String ip;
         String navn;
 
-        /*
+
         //TCP
         //IP del
         Socket clientSocketIp = new Socket("10.10.132.109", 6790);
@@ -33,8 +33,9 @@ public class TCPClient {
         System.out.println("IP-adresse for " + navn + " er: " + ip);
 
         clientSocketIp.close();
-*/
+
         //UDP
+        /*
         InetAddress inetAddress = InetAddress.getByName("10.10.139.153");
         DatagramSocket clientDatagramSocket = new DatagramSocket(6790);
         byte[] byteArr = new byte[1024];
@@ -56,6 +57,7 @@ public class TCPClient {
         System.out.println("Ip for: " + navn + "er: " + ip);
 
         clientDatagramSocket.close();
+         */
         //Chat del
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 
