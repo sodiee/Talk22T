@@ -50,22 +50,35 @@ public class Navneservice {
         */
         //UDP
         DatagramSocket serverSocket = new DatagramSocket(6790);
+        System.out.println("9serversocket lavet");
         byte[] receiveData = new byte[1024];
+        System.out.println("10recievedata [] lavet");
 
         DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+        System.out.println("11datagram receivepacket lavet");
         serverSocket.receive(receivePacket);
+        System.out.println("12datapakke sendt");
 
         String navn = new String(receivePacket.getData(), 0, receivePacket.getLength());
+        System.out.println("13navn modtaget");
         ip = navneservice.getIp(navn);
+        System.out.println("14ip lavet");
 
         InetAddress clientAddress = receivePacket.getAddress();
+        System.out.println("15få inetadresse");
         int clientPort = receivePacket.getPort();
+        System.out.println("16get port");
         String response = ip;
+        System.out.println("17repsone = ip");
 
         byte[] sendData = response.getBytes();
+        System.out.println("18lav [] senddata");
         DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, clientAddress, clientPort);
+        System.out.println("19create sendpacket");
         serverSocket.send(sendPacket);
+        System.out.println("20send sendpacket");
 
         serverSocket.close();
+        System.out.println("21server close");
     }
 }
