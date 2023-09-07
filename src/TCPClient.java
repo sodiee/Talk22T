@@ -3,6 +3,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.Scanner;
 
 
 public class TCPClient {
@@ -10,10 +11,17 @@ public class TCPClient {
     public static void main(String[] args) throws Exception, IOException {
         String sentence;
         String sentenceFromOtherClient;
+        String ip;
+        Navneservice navneservice = new Navneservice();
+
+        navneservice.printMap();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Hvem vil du chatte med?");
+        ip = navneservice.getIp(sc.nextLine());
 
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 
-        Socket clientSocket = new Socket("localhost", 6789);
+        Socket clientSocket = new Socket(ip, 6789);
         SkriveTraad skriveTraad = new SkriveTraad(clientSocket);
         ThreadLæse threadLæse = new ThreadLæse(clientSocket);
         //DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
