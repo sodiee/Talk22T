@@ -35,7 +35,7 @@ public class TCPClient {
         clientSocketIp.close();
 */
         //UDP
-        InetAddress inetAddress = InetAddress.getByName("10.10.139.117");
+        InetAddress inetAddress = InetAddress.getByName("10.10.139.153");
         DatagramSocket clientDatagramSocket = new DatagramSocket(6790);
         byte[] byteArr = new byte[1024];
 
