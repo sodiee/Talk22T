@@ -37,38 +37,7 @@ public class TCPClient {
         clientSocketIp.close();
 */
         //UDP
-        DatagramSocket clientSocketIP = new DatagramSocket();
 
-        InetAddress serverAddress = InetAddress.getByName("10.10.132.109");
-        int serverPort = 6790;
-        System.out.println("1serveraddress");
-
-        BufferedReader inFromUserIp = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("2buffered infromuserIP");
-        System.out.println("Skriv navnet på den du ønsker at chatte med: ");
-        navn = inFromUserIp.readLine();
-        System.out.println("3navn");
-
-        byte[] sendData = navn.getBytes();
-        System.out.println("4getbytes");
-        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, serverAddress, serverPort);
-        System.out.println("5sendpacket");
-        clientSocketIP.send(sendPacket);
-        System.out.println("6packet sendt");
-
-        byte[] receiveData = new byte[1024];
-        System.out.println("7recive data");
-        DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-        System.out.println("8create datagrampacket");
-        clientSocketIP.receive(receivePacket);
-        System.out.println("clientsocket recieve");
-
-        ip = new String(receivePacket.getData(), 0, receivePacket.getLength());
-        System.out.println("22ip lavet");
-        System.out.println("22IP-adresse for " + navn + " er: " + ip);
-
-        clientSocketIP.close();
-        System.out.println("23clientsocket lukket");
         //Chat del
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 
