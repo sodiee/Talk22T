@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -14,6 +17,8 @@ public class TCPClient {
         String ip;
         String navn;
 
+        /*
+        //TCP
         //IP del
         Socket clientSocketIp = new Socket("10.10.132.109", 6790);
         BufferedReader inFromUserIp = new BufferedReader(new InputStreamReader(System.in));
@@ -30,6 +35,29 @@ public class TCPClient {
         System.out.println("IP-adresse for " + navn + " er: " + ip);
 
         clientSocketIp.close();
+*/
+        //UDP
+        DatagramSocket clientSocketIP = new DatagramSocket();
+
+        InetAddress serverAddress = InetAddress.getByName("10.10.132.109");
+        int serverPort = 6790;
+
+        BufferedReader inFromUserIp = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Skriv navnet på den du ønsker at chatte med: ");
+        navn = inFromUserIp.readLine();
+
+        byte[] sendData = navn.getBytes();
+        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, serverAddress, serverPort);
+        clientSocketIP.send(sendPacket);
+
+        byte[] receiveData = new byte[1024];
+        DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+        clientSocketIP.receive(receivePacket);
+
+        ip = new String(receivePacket.getData(), 0, receivePacket.getLength());
+        System.out.println("IP-adresse for " + navn + " er: " + ip);
+
+        clientSocketIP.close();
 
         //Chat del
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));

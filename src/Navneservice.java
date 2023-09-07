@@ -2,8 +2,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -34,7 +33,8 @@ public class Navneservice {
     public static void main(String[] args) throws IOException {
         String ip;
         Navneservice navneservice = new Navneservice();
-
+/*
+        //TCP
         ServerSocket welcomeSocket = new ServerSocket(6790);
         Socket connectionSocket = welcomeSocket.accept();
 
@@ -47,5 +47,25 @@ public class Navneservice {
 
         DataOutputStream dataOutputStream = new DataOutputStream(connectionSocket.getOutputStream());
         dataOutputStream.writeBytes(ip + '\n');
+        */
+        //UDP
+        DatagramSocket serverSocket = new DatagramSocket(6790);
+        byte[] receiveData = new byte[1024];
+
+        DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+        serverSocket.receive(receivePacket);
+
+        String navn = new String(receivePacket.getData(), 0, receivePacket.getLength());
+        ip = navneservice.getIp(navn);
+
+        InetAddress clientAddress = receivePacket.getAddress();
+        int clientPort = receivePacket.getPort();
+        String response = ip;
+
+        byte[] sendData = response.getBytes();
+        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, clientAddress, clientPort);
+        serverSocket.send(sendPacket);
+
+        serverSocket.close();
     }
 }
